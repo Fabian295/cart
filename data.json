@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Apple",
+      "quantity": 12,
+      "price": "€0.25"
+    },
+    {
+      "id": 2,
+      "title": "Banana",
+      "quantity": 2,
+      "price": "€0.90"
+    },
+    {
+      "id": 3,
+      "title": "Cherry",
+      "quantity": 16,
+      "price": "€0.20"
+    },
+    {
+      "id": 4,
+      "title": "Orange",
+      "quantity": 6,
+      "price": "€0.50"
+    },
+    {
+      "id": 5,
+      "title": "Kiwi",
+      "quantity": 4,
+      "price": "€0.75"
+    },
+    {
+      "id": 6,
+      "title": "Strawberry",
+      "quantity": 9,
+      "price": "€0.45"
+    },
+    {
+      "id": 7,
+      "title": "Melon",
+      "quantity": 1,
+      "price": "€3.50"
+    }
+  ]
+}

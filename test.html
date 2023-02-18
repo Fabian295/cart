@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./favicon-128.png" type="image/x-icon">
+  <style>
+    .block {
+      border: 1px solid #00ff00;
+    }
+  </style>
+  <title>Test</title>
+</head>
+
+<body>
+
+
+  <p>What's UP!!</p>
+  <div class="box">
+    <h1 class="title">TEST</h1>
+
+    <abbr title="💡 TOOLTIP 🧰">TT</abbr> something awesome!
+    <div class="block">
+      <div class="content">
+        <p class="par">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, laboriosam!</p>
+        <button class="btn">CLICK!!</button>
+        <button class="btn2">REMOVE!!</button>
+      </div>
+    </div>
+    <div class="out">
+      <p class="dummy">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, aliquam?</p>
+    </div>
+  </div>
+
+  <script>
+    // let arr = [10, 20, 30, 40];
+    let arr = [
+      { id: 1, title: 'Apple', qty: 5, itemPrice: 0.85 },
+      { id: 2, title: 'Banana', qty: 3, itemPrice: 0.35 },
+      { id: 3, title: 'Cherry', qty: 8, itemPrice: 0.05 }
+    ];
+
+    const btn = document.querySelector('.btn');
+    const btn2 = document.querySelector('.btn2');
+
+    btn.addEventListener('click', (e) => {
+      // console.log();
+      // console.log('clicked', arr[0]['title']);
+      let content = e.target.parentElement;
+      let block = content.parentElement;
+      console.log(content, block, block.previousElementSibling)
+      let box = block.parentElement;
+      let p = document.createElement('p');
+      let p2 = document.createElement('p');
+      p.textContent = "This text was dynamically added to the page!";
+      content.appendChild(p)
+      content.setAttribute('data-text', '\nYo, the data text!\n')
+      p2.textContent = content.getAttribute('data-text');
+      let p3 = document.createElement('p');
+      p3.textContent = "Text was added to the page, dynamically !";
+      box.appendChild(p3)
+      content.appendChild(p2)
+    })
+
+    btn2.addEventListener('click', (e) => {
+      console.log('clicked', arr[2]);
+      let el = e.target.parentElement;
+      console.log(el)
+      let block = el.parentElement;
+      console.log(block.previousSibling);
+      console.log(block.parentElement)
+      let box = block.parentElement;
+      // box.removeChild(block.previousElementSibling)
+      // box.remove(block.children)
+      // let p3 = document.createElement('p');
+      // p3.textContent = "This text was dynamically added to the page!";
+      // box.appendChild(p3)
+      box.removeChild(block.nextElementSibling)
+    })
+
+    function find(id) {
+      let match = arr.filter(item => {
+        if (item.id === id) {
+          return true;
+        }
+
+      });
+
+      if (match) {
+        return console.log(match[0], match)
+      }
+    }
+
+    find(2)
+
+
+  </script>
+</body>
+
+</html>
