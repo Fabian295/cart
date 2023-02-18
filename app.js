@@ -106,9 +106,9 @@ sort(field = 'title') {
   // Sort by field - title, price
   //return a sorted shallow copy of the CART.contents array
   let sorted = CART.contents.sort((a, b) => {
-    if ( a[field] > b[field]) {
+    if (a[field] > b[field]) {
       return 1;
-    }  else  if (a[field] < b[field]) {
+    }  else  if (a[field] < a[field]) {
       return -1;
     } else { 
       return 0;
@@ -139,7 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showCart() {
   let cartSection = document.getElementById('cart');
-  cart.innerHTML = '';
+  // cart.innerHTML = '';
+  CART.innerHTML = '';
   let s = CART.sort('qty');
   s.forEach((item) => {
     let cartitem = document.createElement('div');
@@ -212,7 +213,7 @@ function decrementCart(ev){
 
 function getProducts(success, failure) {
    //request the list of products from the "server"
-   const URL = 'https://github.com/Fabian295/cart/blob/main/data.json';
+   const URL = './data.json';
 
    fetch(URL, {
     method: 'GET',
