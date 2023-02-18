@@ -78,7 +78,7 @@ const CART = {
         return item;
       }
     });
-    CART.forEach( async item => {
+    CART.contents.forEach( async item => {
       if (item.id === id && item.qty === 0 ) {
         await CART.remove(id);
       }
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function showCart() {
   let cartSection = document.getElementById('cart');
   cart.innerHTML = '';
-  let s = CART.sort(qty);
+  let s = CART.sort('qty');
   s.forEach((item) => {
     let cartitem = document.createElement('div');
     cartitem.className = 'cart-item';
@@ -173,7 +173,7 @@ function showCart() {
     let price = document.createElement('div');
     price.className = 'price';
     let cost = new Intl.NumberFormat('nl-NL',
-                    {style: 'currency', currency: 'Euro'}
+                    {style: 'currency', currency: 'Eur'}
     ).format(item.qty * item.itemPrice) ;
     price.textContent = cost;
     cartitem.appendChild(price);
@@ -196,13 +196,93 @@ function incrementCart(e) {
   }
 }
 
+function decrementCart(ev){
+  ev.preventDefault();
+  let id = parseInt(ev.target.getAttribute('data-id'));
+  CART.reduce(id, 1);
+  let controls = ev.target.parentElement;
+  let qty = controls.querySelector('span:nth-child(2)');
+  let item = CART.find(id);
+  if(item){
+      qty.textContent = item.qty;
+  }else{
+      document.getElementById('cart').removeChild(controls.parentElement);
+  }
+}
+
 function getProducts(success, failure) {
    //request the list of products from the "server"
-   const URL = ''
+   const URL = 'https://github.com/Fabian295/cart/blob/main/data.json';
+
+   fetch(URL, {
+    method: 'GET',
+    mode: 'no-cors'
+   })
+   .then(response => response.json())
+   .then(showProducts)
+   .catch(err => {
+    errorMessage(err.message);
+   });
 }
 
 
+function showProducts(products) {
+
+  
+
+  PRODUCTS = products;
+
+  console.log(products)
+
+              //take data.products and display inside <section id="products">
+              let imgPath = './images/';
+              let productSection = document.getElementById('products');
+              productSection.innerHTML = "";
+              products.forEach(product=>{
+                  let card = document.createElement('div');
+                  card.className = 'card';
+                  //add the image to the card
+                  let img = document.createElement('img');
+                  img.alt = product.title;
+                  img.src = imgPath + product.img;
+                  card.appendChild(img);
+                  //add the price
+                  let price = document.createElement('p');
+                  let cost = new Intl.NumberFormat('nl-NL', 
+                                          {style:'currency', currency:'Eur'}).format(product.price);
+                  price.textContent = cost;
+                  price.className = 'price';
+                  card.appendChild(price);
+                  
+                  //add the title to the card
+                  let title = document.createElement('h2');
+                  title.textContent = product.title;
+                  card.appendChild(title);
+                  //add the description to the card
+                  let desc = document.createElement('p');
+                  desc.textContent = product.desc;
+                  card.appendChild(desc);
+                  //add the button to the card
+                  let btn = document.createElement('button');
+                  btn.className = 'btn';
+                  btn.textContent = 'Add Item';
+                  btn.setAttribute('data-id', product.id);
+                  btn.addEventListener('click', addItem);
+                  card.appendChild(btn);
+                  //add the card to the section
+                  productSection.appendChild(card);
+              })
+}
+
+function addItem(ev){
+  ev.preventDefault();
+  let id = parseInt(ev.target.getAttribute('data-id'));
+  console.log('add to cart item', id);
+  CART.add(id, 1);
+  showCart();
+}
+
 function errorMessage(err){
   //display the error message to the user
-  console.error(err);
+  console.log(err);
 }
