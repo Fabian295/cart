@@ -249,7 +249,7 @@ function showProducts(products) {
                   //add the price
                   let price = document.createElement('p');
                   let cost = new Intl.NumberFormat('nl-NL', 
-                                          {style:'currency', currency:'Eur'}).format(product.price);
+                                          {style:'currency', currency:'EUR'}).format(product.price);
                   price.textContent = cost;
                   price.className = 'price';
                   card.appendChild(price);
