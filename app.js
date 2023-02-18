@@ -12,9 +12,9 @@ const CART = {
     } else {
       // dummy data for testing purposes
       CART.contents = [
-        {id: 1, title: 'Apple', quantity: 5, itemPrice: '€0.85'},
-        {id: 2, title: 'Banana', quantity: 3, itemPrice: '€0.35'},
-        {id: 3, title: 'Cherry', quantity: 8, itemPrice: '€0.05'},
+        {id: 1, title: 'Apple', qty: 5, itemPrice: 0.85},
+        {id: 2, title: 'Banana', qty: 3, itemPrice: 0.35},
+        {id: 3, title: 'Cherry', qty: 8, itemPrice: 0.05},
       ];
       CART.sync();
     }

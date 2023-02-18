@@ -39,22 +39,22 @@ main{
     min-width: 600px;
 }
 
-.spacer {
+/* .spacer {
   padding: 2rem ;
   margin: 2 auto;
-}
+} */
 
 #products{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
-    border: 1px solid #bbb;
+    /* border: 1px solid #bbb; */
     
     flex:1 1 auto;
   }
   
   #cart{
-  border: 1px solid #00bcac;
+  /* border: 1px solid #00bcac; */
     flex: 1 1 20%;
 }
 
@@ -68,7 +68,7 @@ main{
 
 .card img{
     width: 100%;
-    filter: contrast(0.3);
+    /* filter: contrast(0.3); */
 }
 
 .card .price{
