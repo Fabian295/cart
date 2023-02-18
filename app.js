@@ -173,7 +173,7 @@ function showCart() {
     let price = document.createElement('div');
     price.className = 'price';
     let cost = new Intl.NumberFormat('nl-NL',
-                    {style: 'currency', currency: 'Eur'}
+                    {style: 'currency', currency: 'EUR'}
     ).format(item.qty * item.itemPrice) ;
     price.textContent = cost;
     cartitem.appendChild(price);
